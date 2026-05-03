@@ -92,7 +92,10 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   cursor:pointer;transition:background .1s;gap:4px}
 .loc-row:hover{background:#1a1a30}
 .loc-row.selected{background:var(--sel-bg)}
-.loc-row.child{padding-left:22px}
+.loc-row.child{padding-left:30px;border-left:2px solid var(--divider)}
+.loc-row.parent-group{cursor:default;opacity:.9}
+.loc-row.parent-group:hover{background:transparent}
+.loc-row.parent-group .loc-name{font-weight:700;letter-spacing:.03em}
 .loc-badge{font-size:9px;font-weight:700;padding:1px 4px;flex-shrink:0;
   font-family:'Share Tech Mono',monospace}
 .loc-badge.m{background:var(--tag-m-bg);color:var(--col-m)}
@@ -550,13 +553,14 @@ function visibleGarages() {
 function buildLocList() {
   const list = document.getElementById('loc-list');
   list.innerHTML = '';
-  let lastChar = null, lastType = null;
+  let lastChar = null, lastType = null, lastParent = null;
   const visible = visibleGarages();
 
   visible.forEach(([origIdx, g]) => {
     const parts   = g.name.split(' → ');
     const display = parts.length > 1 ? parts[parts.length-1] : g.name;
     const isChild = parts.length > 1;
+    const parent  = isChild ? parts[0] : null;
 
     if (charFilter === 'ALL' && g.char !== lastChar) {
       if (lastChar !== null) {
@@ -568,7 +572,7 @@ function buildLocList() {
       ch.className = `char-header ${g.char.toLowerCase()}`;
       ch.textContent = g.char === 'M' ? '[M] Main Character' : '[S] Secondary Character';
       list.appendChild(ch);
-      lastType = null;
+      lastType = null; lastParent = null;
     }
     if (g.type !== lastType) {
       const th = document.createElement('div');
@@ -577,13 +581,27 @@ function buildLocList() {
       th.style.color = TYPE_ACC[g.type];
       th.textContent = `${TYPE_ICON[g.type]} ${TYPE_LABEL[g.type]}`;
       list.appendChild(th);
+      lastParent = null;
     }
     lastChar = g.char; lastType = g.type;
 
     if (!isChild) {
+      lastParent = null;
       const div = document.createElement('div');
       div.className = 'loc-divider';
       list.appendChild(div);
+    }
+
+    if (isChild && parent !== lastParent) {
+      const div = document.createElement('div');
+      div.className = 'loc-divider';
+      list.appendChild(div);
+
+      const ph = document.createElement('div');
+      ph.className = `loc-row ${g.char.toLowerCase()} parent-group`;
+      ph.innerHTML = `<span class="loc-badge ${g.char.toLowerCase()}">[${g.char}]</span><span class="loc-name">${parent}</span>`;
+      list.appendChild(ph);
+      lastParent = parent;
     }
 
     const row = document.createElement('div');
