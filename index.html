@@ -319,8 +319,8 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   </div>
   <div id="missing-stats">
     <div class="m-stat"><div class="m-stat-num">860</div><div class="m-stat-lbl">Wiki Total</div></div>
-    <div class="m-stat"><div class="m-stat-num">758</div><div class="m-stat-lbl">You Own</div></div>
-    <div class="m-stat"><div class="m-stat-num" id="m-count">114</div><div class="m-stat-lbl">Showing Missing</div></div>
+    <div class="m-stat"><div class="m-stat-num">759</div><div class="m-stat-lbl">You Own</div></div>
+    <div class="m-stat"><div class="m-stat-num" id="m-count">113</div><div class="m-stat-lbl">Showing Missing</div></div>
     <div class="m-stat"><div class="m-stat-num">88%</div><div class="m-stat-lbl">Complete</div></div>
   </div>
   <div id="missing-content">
@@ -377,7 +377,7 @@ const GARAGES = [
   {char:"M",type:"garage",name:"The Vinewood Club Garage → Basement Level 4",cars:["Elegy RH8","Windsor (Livery)","Seven-70","Revolter","Nightshark","Gang Burrito","Stallion Topless","Savestra","Schafter LWB (Armored)","SC1","Yosemite Rancher","Youga Classic 4x4","Sultan RS","Bugstars Burrito","Sultan Classic","Drift Yosemite","Comet SR","Outlaw","Everon","Peyote Gasser Topless"]},
   {char:"M",type:"garage",name:"The Vinewood Club Garage → Basement Level 5",cars:["Lifeguard","Veto Modern","Veto Classic","Pipistrello","Coquette D1","Stinger TT","Buffalo EVX","La Coureuse","Aleutian","Turismo Omaggio","Paragon S","Euros X32","Niobe","Banshee GTS","LSCM Jester RR","Chavos V6","Draugur","Torero XO"]},
   {char:"M",type:"garage",name:"Bail Office",cars:["Coquette D10 Pursuit","Coquette D5"]},
-  {char:"M",type:"garage",name:"Garment Factory",cars:["Firebolt ASP","Sultan RS Classic","Cyclone II"]},
+  {char:"M",type:"garage",name:"Garment Factory",cars:["Sultan RS Classic","Cyclone II","Firebolt ASP"]},
   {char:"M",type:"garage",name:"Mansions → The Tongva Estate",cars:[]},
   {char:"M",type:"garage",name:"Mansions → Richman Villa",cars:["GT750","X-treme","FMJ MK V","Sentinel XS4","Luiva","Astrale","Itali Classic","Keitora"]},
   {char:"M",type:"garage",name:"Mansions → The Vinewood Residence",cars:[]},
@@ -400,7 +400,7 @@ const GARAGES = [
 
   // ── SECONDARY CHARACTER ──────────────────────────────────────
   {char:"S",type:"garage",name:"3655 Wild Oats Dr",cars:["Kuruma (Armored)","Whippet Race Bike","Endurex Race Bike","Tri-Cycles Race Bike"]},
-  {char:"S",type:"garage",name:"Eclipse, Penthouse Suite 2",cars:["FMJ MK V","Scramjet","Luiva","Rapid GT","Dominator GTX","Schwartzer","Buffalo","Sanchez","Banshee","Moonbeam"]},
+  {char:"S",type:"garage",name:"Eclipse, Penthouse Suite 2",cars:["FMJ MK V","Scramjet","Luiva","Rapid GT","Dominator GTX","Schwartzer","Buffalo","Sanchez","Banshee","Moonbeam","Cruiser","Scorcher","BMX"]},
   {char:"S",type:"garage",name:"Integrity Way, 35",cars:["X80 Proto","Kamacho Topless","Khamelion","Faction Custom","Peyote","Sandking XL","Fagaloa","Elegy RH8","Comet","Warrener","Whippet Race Bike","Cruiser","Scorcher"]},
   {char:"S",type:"garage",name:"3 Alta St, Apt 10",cars:["Stinger Topless","Insurgent","Sanchez (Livery)","Virgo","Schafter LWB","F620","Romero Hearse","Hakuchou","Dominator","Phoenix","BMX","Tri-Cycles Race Bike","Junk Energy Inductor"]},
   {char:"S",type:"garage",name:"Eclipse, Penthouse Suite 3",cars:["Zombie Bobber","Banshee Topless","Faggio Mod","Bestia GTS","Ellie","Esskey","Windsor Drop","Sentinel","Brawler","Dubsta","Endurex Race Bike","Cruiser","Whippet Race Bike"]},
@@ -412,17 +412,17 @@ const GARAGES = [
   {char:"S",type:"garage",name:"Ron Wind Farm Facility",cars:["Insurgent Pick-Up Custom","APC","Deluxo","Stromberg","Barrage","Ardent","Menacer","RCV","Chernobog","TM-02 Khanjali","Thruster"]},
   {char:"S",type:"garage",name:"Nightclub → Nightclub B2",cars:["Future Shock Dominator","Future Shock Impaler","Future Shock Issi","Future Shock ZR380","Future Shock Slamvan","Romero Hearse","Impaler","Locust","Blazer Lifeguard","Future Shock Deathbike"]},
   {char:"S",type:"garage",name:"Nightclub → Nightclub B3",cars:["Revolter","Scramjet","Sanctus","Fränken Stange","Surfer Custom","Journey II","Vigero ZX","Kanjo SJ","Mamba Topless","10F"]},
-  {char:"S",type:"garage",name:"Nightclub → Nightclub B4",cars:["Brioso 300","Gauntlet Classic","Manana","Specter","Itali GTB","FCR 1000","Faction","Primo","Voodoo","Virgo Classic"]},
+  {char:"S",type:"garage",name:"Nightclub → Nightclub B4",cars:["Brioso 300","Gauntlet Classic","Manana","Specter","Itali GTB","FCR 1000","Faction","Primo","Tornado","Virgo Classic"]},
   {char:"S",type:"garage",name:"Arena → Arena Workshop",cars:["Nightmare Slamvan","Future Shock Sasquatch","Apocalypse Slamvan","Apocalypse Deathbike","Nightmare Dominator","Apocalypse Impaler","Nightmare Impaler","Apocalypse Dominator","Future Shock Cerberus"]},
   {char:"S",type:"garage",name:"Arena → Arena Workshop B1",cars:["Apocalypse Issi","Apocalypse Sasquatch","Future Shock Bruiser","Nightmare Sasquatch","Nightmare Issi","Apocalypse ZR380","Nightmare Bruiser","Apocalypse Bruiser","Nightmare ZR380","Nightmare Cerberus"]},
   {char:"S",type:"garage",name:"Arena → Arena Workshop B2",cars:["Apocalypse Scarab","Future Shock Scarab","Nightmare Scarab","Apocalypse Brutus","Future Shock Brutus","Nightmare Brutus","Apocalypse Imperator","Future Shock Imperator","Nightmare Imperator","Apocalypse Cerberus"]},
   {char:"S",type:"garage",name:"Casino Penthouse",cars:["Schlagen GT","Weevil","Baller","BR8","DR1","PR4","R88","Rat-Truck","Impaler","Beater Dukes"]},
   {char:"S",type:"garage",name:"Arcade",cars:["Bugstars Burrito","Lifeguard","Baller","Caracara","Oracle","Washington","Clique","Comet Safari","Gresley","Vacca"]},
-  {char:"S",type:"garage",name:"2045 North Conker Ave",cars:["Duneloader","Buffalo S","Issi Sport","Scorcher","Junk Energy Inductor","Inductor"]},
+  {char:"S",type:"garage",name:"2045 North Conker Ave",cars:["Blazer","Buffalo S","Issi Sport","Regina","Oracle XS","Dubsta","Mesa","Cavalcade (Second Gen)","Rebel","Bison","Scorcher","Junk Energy Inductor","Inductor"]},
   {char:"S",type:"garage",name:"331 Supply St",cars:["Oppressor Mk II"]},
   {char:"S",type:"garage",name:"Auto Shop",cars:["Euros","ZR350","Tailgater S","Warrener HKR","Remus","Dominator GTT","Calico GTF","Jester RR","Futo GTX","RT3000"]},
   {char:"S",type:"garage",name:"Agency",cars:["Vigilante"]},
-  {char:"S",type:"garage",name:"3677 Whispymound Dr",cars:["Inductor","Inductor","BMX"]},
+  {char:"S",type:"garage",name:"3677 Whispymound Dr",cars:["Duneloader","Rat-Loader","Surfer (Rusty)","Tornado (Rusty)","Voodoo (Rusty)","Injection","Sandking SWB","Inductor","Inductor","BMX"]},
   {char:"S",type:"garage",name:"2117 Milton Rd",cars:[]},
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B1",cars:["Felon GT","Baller","Felon","Sadler","Emperor","Prairie","PCJ 600","Seminole","Felon GT","Rusty Rebel"]},
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B2",cars:["Duneloader"]},
@@ -430,7 +430,7 @@ const GARAGES = [
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B4",cars:[]},
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B5",cars:[]},
   {char:"S",type:"garage",name:"The Vinewood Club Garage → Basement Level 1",cars:["Drift Walton L35","Walton L35 Stock","GT750","Ardent","BR8","Itali RSX","SC1","Sentinel GTS","Hakuchou Drag","Deity","Castigator","Impaler LX Cruiser","Neon","Coquette D5","Weaponized Tampa","Police Bike","Roosevelt","Rocoto","Verlierer","Glendale"]},
-  {char:"S",type:"garage",name:"The Vinewood Club Garage → Basement Level 2",cars:["Wolfsbane","Innovation","Blade","Diabolus","FCR 1000","Futo","Daemon","Schwartzer","Street Blazer","Comet S2","Habanero","Blista","Issi","BeeJay XL","Granger","Surge","Cavalcade","Landstalker","Fusilade","Asterope"]},
+  {char:"S",type:"garage",name:"The Vinewood Club Garage → Basement Level 2",cars:["Wolfsbane","Innovation","Blade","Diabolus","FCR 1000","Futo","Daemon","Schwartzer","Street Blazer","Comet S2","Habanero","Blista","Issi","BeeJay XL","Granger","Surge","Cavalcade (OG)","Landstalker","Fusilade","Asterope"]},
   {char:"S",type:"garage",name:"The Vinewood Club Garage → Basement Level 3",cars:["Baller LE LWB","Baller LE LWB (Armored)","Schafter V12","Schafter V12 (Armored)","Youga","Stanier","Radius","Patriot","Minivan","Carbon RS","Fugitive","FQ 2","Zion Cabrio","Penumbra","Ruiner","Emperor","Vigero","Dilettante","Rancher XL","Stratum"]},
   {char:"S",type:"garage",name:"The Vinewood Club Garage → Basement Level 4",cars:["Ingot","Bobcat XL","Comet SR","Cheburek","Half-track","Powersurge","Baller ST","Nightmare Deathbike","La Coureuse","Sentinel XS","Premier","Mesa","Intruder","Exemplar","Rhapsody","Feltzer","Brioso R/A","Eudora","Envisage","Hellion"]},
   {char:"S",type:"garage",name:"The Vinewood Club Garage → Basement Level 5",cars:["Tailgater","Daemon","Kanjo SJ","Brigham","V-STR","Sprunk Buffalo","Revolter","Tahoma Coupe","Jackal","Taipan","JB 700","Sentinel","JB 700W","Park Ranger","Gauntlet","Primo Custom","Retinue","GB200","Panto","Streiter"]},
@@ -460,13 +460,13 @@ const GARAGES = [
 const MISSING = [
   ["Sports","9F (Car Meet)"],  ["Sports","Jester (Base) (Car Meet)"],  ["Sports","Massacro (Base) (Car Meet)"],  ["Muscle","Lost Slamvan (Casino Wheel)"],
   ["Muscle","Picador"],  ["Muscle","Tulip (Car Meet)"],  ["Muscle","Vamos (Car Meet)"],  ["Super","Voltic (Car Meet)"],
-  ["Sports Classics","Tornado"],  ["Sports Classics","Tornado (Mariachi)"],  ["Sports Classics","Tornado (rusted)"],  ["Sports Classics","Tornado Rat Rod (Car Meet)"],
+  ["Sports Classics","Tornado (Mariachi)"],  ["Sports Classics","Tornado Rat Rod (Car Meet)"],
   ["Sedans","Asea"],  ["Sedans","Cognoscenti"],  ["Sedans","Cognoscenti 55 (Armored) (Car Meet)"],  ["Sedans","Cognoscenti 55 (Car Meet)"],
-  ["Sedans","Hardy"],  ["Sedans","Regina"],  ["Sedans","Schafter (second generation)"],  ["SUVs","Astron Custom"],
-  ["SUVs","XLS (Car Meet)"],  ["Coupes","Oracle XS"],  ["Motorcycles","Bagger"],  ["Motorcycles","Enduro (Car Meet)"],
+  ["Sedans","Hardy"],  ["Sedans","Schafter (second generation)"],  ["SUVs","Astron Custom"],
+  ["SUVs","XLS (Car Meet)"],  ["Motorcycles","Bagger"],  ["Motorcycles","Enduro (Car Meet)"],
   ["Motorcycles","Faggio Sport (Car Meet)"],  ["Motorcycles","Nemesis"],  ["Motorcycles","Rat Bike (Car Meet)"],  ["Motorcycles","Ruffian"],
   ["Motorcycles","Thrust (Car Meet)"],  ["Motorcycles","Vortex (Car Meet)"],  ["Off-Road","Bodhi"],  ["Off-Road","Dune Buggy"],
-  ["Off-Road","Rebel"],  ["Off-Road","Sandking SWB"],  ["Off-Road","Space Docker (Obtain through Arena War)"],  ["Vans","Bison"],
+  ["Off-Road","Space Docker (Obtain through Arena War)"],
 ];
 
 const CLASS_ORDER = ["Sports","Muscle","Super","Sports Classics","Sedans","SUVs","Compacts",
