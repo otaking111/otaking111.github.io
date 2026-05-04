@@ -115,6 +115,11 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 #detail-title{font-size:14px;font-weight:700;letter-spacing:.04em}
 #detail-count{margin-left:auto;font-size:10px;color:var(--muted);
   font-family:'Share Tech Mono',monospace;white-space:nowrap}
+#sort-btn{background:transparent;border:1px solid var(--divider);color:var(--muted);
+  font-family:'Share Tech Mono',monospace;font-size:10px;padding:2px 8px;cursor:pointer;
+  letter-spacing:.08em;transition:all .15s;flex-shrink:0}
+#sort-btn:hover{color:var(--text);border-color:var(--text)}
+#sort-btn.active{background:var(--header);color:var(--accent);border-color:var(--accent)}
 
 /* search result header */
 #search-result-header{padding:8px 14px;border-bottom:1px solid var(--divider);
@@ -273,7 +278,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
   <div id="char-counts">
     <span class="vcount m"><span class="vcount-tag">[M]</span><span class="vcount-num" id="count-m">—</span></span>
     <span class="vcount s"><span class="vcount-tag">[S]</span><span class="vcount-num" id="count-s">—</span></span>
-    <span class="vcount total"><span class="vcount-tag">∑</span><span class="vcount-num" id="count-total">—</span></span>
+    <span class="vcount total"><span class="vcount-tag">TOTAL</span><span class="vcount-num" id="count-total">—</span></span>
   </div>
 
   <!-- Search -->
@@ -296,6 +301,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
     </div>
     <div id="detail-header">
       <div id="detail-title">—</div>
+      <button id="sort-btn" onclick="toggleSort()" title="Toggle A–Z sort">A–Z</button>
       <div id="detail-count"></div>
     </div>
     <div id="car-list"></div>
@@ -316,14 +322,14 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
       <button class="fbtn" data-cls="Coupes" onclick="setClsFilter('Coupes')">Coupes</button>
       <button class="fbtn" data-cls="Motorcycles" onclick="setClsFilter('Motorcycles')">Motos</button>
       <button class="fbtn" data-cls="Off-Road" onclick="setClsFilter('Off-Road')">Off-Road</button>
-      <button class="fbtn" data-cls="other" onclick="setClsFilter('other')">Other</button>
+      <button class="fbtn" id="show-hidden-btn" onclick="toggleHidden()">Show/Hide</button>
     </div>
     <input id="missing-search" type="text" placeholder="Search…" oninput="renderMissing()">
   </div>
   <div id="missing-stats">
     <div class="m-stat"><div class="m-stat-num">860</div><div class="m-stat-lbl">Wiki Total</div></div>
-    <div class="m-stat"><div class="m-stat-num">764</div><div class="m-stat-lbl">You Own</div></div>
-    <div class="m-stat"><div class="m-stat-num" id="m-count">107</div><div class="m-stat-lbl">Showing Missing</div></div>
+    <div class="m-stat"><div class="m-stat-num">766</div><div class="m-stat-lbl">You Own</div></div>
+    <div class="m-stat"><div class="m-stat-num" id="m-count">105</div><div class="m-stat-lbl">Showing Missing</div></div>
     <div class="m-stat"><div class="m-stat-num">88%</div><div class="m-stat-lbl">Complete</div></div>
   </div>
   <div id="missing-content">
@@ -344,7 +350,7 @@ html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--text);
 // ═══════════════════════════════════════════════════════════════
 const GARAGES = [
   // ── MAIN CHARACTER ───────────────────────────────────────────
-  {char:"M",type:"garage",name:"3 Alta St, Apt 57",cars:["Kuruma (Armored)","Insurgent","Vigilante","Firebolt ASP","JB 700W","Astron","Vigero ZX Convertible","Ignus","Arbiter GT","Endurex Race Bike","BMX","Cruiser"]},
+  {char:"M",type:"garage",name:"3 Alta St, Apt 57",cars:["Kuruma (Armored)","Insurgent","Vigilante","Firebolt ASP","JB 700W","Astron","Vigero ZX Convertible","Ignus","Arbiter GT","Astron Custom","Endurex Race Bike","BMX","Cruiser"]},
   {char:"M",type:"garage",name:"Exceptionalists Way",cars:["Future Shock ZR380","Future Shock Issi","Future Shock Deathbike","Future Shock Brutus","Future Shock Scarab","Future Shock Imperator","Future Shock Slamvan","Scorcher","Tri-Cycles Race Bike","Endurex Race Bike"]},
   {char:"M",type:"garage",name:"2044 North Conker Ave",cars:["BMX","Whippet Race Bike","Cruiser"]},
   {char:"M",type:"garage",name:"Eclipse Towers, 3",cars:["Inductor","Junk Energy Inductor","Scorcher"]},
@@ -380,7 +386,7 @@ const GARAGES = [
   {char:"M",type:"garage",name:"The Vinewood Club Garage → Basement Level 4",cars:["Elegy RH8","Windsor (Livery)","Seven-70","Revolter","Nightshark","Gang Burrito","Stallion Topless","Savestra","Schafter LWB (Armored)","SC1","Yosemite Rancher","Youga Classic 4x4","Sultan RS","Bugstars Burrito","Sultan Classic","Drift Yosemite","Comet SR","Outlaw","Everon","Peyote Gasser Topless"]},
   {char:"M",type:"garage",name:"The Vinewood Club Garage → Basement Level 5",cars:["Lifeguard","Veto Modern","Veto Classic","Pipistrello","Coquette D1","Stinger TT","Buffalo EVX","La Coureuse","Aleutian","Turismo Omaggio","Paragon S","Euros X32","Niobe","Banshee GTS","LSCM Jester RR","Chavos V6","Draugur","Torero XO"]},
   {char:"M",type:"garage",name:"Bail Office",cars:["Coquette D10 Pursuit","Coquette D5"]},
-  {char:"M",type:"garage",name:"Garment Factory",cars:["Sultan RS Classic","Cyclone II","Firebolt ASP"]},
+  {char:"M",type:"garage",name:"Garment Factory",cars:["Sultan RS Classic","Cyclone II","Hardy","Firebolt ASP"]},
   {char:"M",type:"garage",name:"Mansions → The Tongva Estate",cars:[]},
   {char:"M",type:"garage",name:"Mansions → Richman Villa",cars:["GT750","X-treme","FMJ MK V","Sentinel XS4","Luiva","Astrale","Itali Classic","Keitora"]},
   {char:"M",type:"garage",name:"Mansions → The Vinewood Residence",cars:[]},
@@ -428,7 +434,7 @@ const GARAGES = [
   {char:"S",type:"garage",name:"3677 Whispymound Dr",cars:["Duneloader","Rat-Loader","Surfer (Rusty)","Tornado (Rusty)","Voodoo (Rusty)","Injection","Sandking SWB","Dune Buggy","Tulip","Picador","Inductor","Inductor","BMX"]},
   {char:"S",type:"garage",name:"2117 Milton Rd",cars:[]},
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B1",cars:["Felon GT","Baller","Felon","Sadler","Emperor","Prairie","PCJ 600","Seminole","Felon GT","Rusty Rebel"]},
-  {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B2",cars:["Bagger","Schafter","Asea"]},
+  {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B2",cars:["Bagger","Schafter (second generation)","Asea"]},
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B3",cars:[]},
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B4",cars:[]},
   {char:"S",type:"garage",name:"Eclipse Blvd Garage → Eclipse Blvd Garage B5",cars:[]},
@@ -465,7 +471,7 @@ const MISSING = [
   ["Muscle","Vamos (Car Meet)"],  ["Super","Voltic (Car Meet)"],
   ["Sports Classics","Tornado (Mariachi)"],  ["Sports Classics","Tornado Rat Rod (Car Meet)"],
   ["Sedans","Cognoscenti"],  ["Sedans","Cognoscenti 55 (Armored) (Car Meet)"],  ["Sedans","Cognoscenti 55 (Car Meet)"],
-  ["Sedans","Hardy"],  ["SUVs","Astron Custom"],
+  
   ["SUVs","XLS (Car Meet)"],  ["Motorcycles","Enduro (Car Meet)"],
   ["Motorcycles","Faggio Sport (Car Meet)"],  ["Motorcycles","Nemesis"],  ["Motorcycles","Rat Bike (Car Meet)"],  ["Motorcycles","Ruffian"],
   ["Motorcycles","Thrust (Car Meet)"],  ["Motorcycles","Vortex (Car Meet)"],  ["Off-Road","Bodhi"],
@@ -489,9 +495,19 @@ let charFilter = "ALL", typeFilter = "ALL";
 let selectedIdx = 0;
 let searchMode = false;
 let activeView = "garage";
+let garageSort = false;
 
 // missing state
 let clsFilter = "all", missingSortCol = "class", missingSortDir = 1;
+let showHidden = false;
+const HIDDEN_VEHICLES = new Set([
+  "Space Docker (Obtain through Arena War)",
+  "Bodhi",
+  "Ruffian",
+  "Nemesis",
+  "Tornado (Mariachi)",
+  "Lost Slamvan (Casino Wheel)"
+]);
 
 // ═══════════════════════════════════════════════════════════════
 // VIEW SWITCHING
@@ -630,6 +646,13 @@ function selectGarage(idx) {
   renderDetail(g);
 }
 
+function toggleSort() {
+  garageSort = !garageSort;
+  const btn = document.getElementById('sort-btn');
+  btn.classList.toggle('active', garageSort);
+  if (GARAGES[selectedIdx]) renderDetail(GARAGES[selectedIdx]);
+}
+
 function renderDetail(g) {
   // show detail header, hide search header
   document.getElementById('search-result-header').style.display = 'none';
@@ -644,18 +667,19 @@ function renderDetail(g) {
   document.getElementById('detail-title').innerHTML =
     `<span class="${tagCls}">${tag}</span> ${TYPE_ICON[g.type]} ${g.name}`;
   document.getElementById('detail-title').style.color = g.char === 'M' ? 'var(--col-m)' : 'var(--col-s)';
+  document.getElementById('sort-btn').classList.toggle('active', garageSort);
   document.getElementById('detail-count').textContent = `${g.cars.length} vehicles`;
-  renderCars(g.cars, g.char, g.type, null);
+  renderCars(g.cars, g.char, g.type, null, garageSort);
 }
 
-function renderCars(cars, char, gtype, highlight) {
+function renderCars(cars, char, gtype, highlight, doSort) {
   const list = document.getElementById('car-list');
   list.innerHTML = '';
   if (!cars.length) {
     list.innerHTML = '<div class="no-results">No vehicles recorded.</div>';
     return;
   }
-  const sorted = ['pegasus','hangar','special'].includes(gtype) ? cars : [...cars].sort();
+  const sorted = doSort ? [...cars].sort((a, b) => a.localeCompare(b)) : cars;
   const baseCol = char === 'M' ? 'normal-m' : 'normal-s';
   const hiCol   = char === 'M' ? 'highlight-m' : 'highlight-s';
   const tag     = char === 'M' ? '[M]' : '[S]';
@@ -739,10 +763,17 @@ function clearSearch() {
 // ═══════════════════════════════════════════════════════════════
 function setClsFilter(cls) {
   clsFilter = cls;
-  document.querySelectorAll('#cls-filters .fbtn').forEach(b => {
+  document.querySelectorAll('#cls-filters .fbtn:not(#show-hidden-btn)').forEach(b => {
     const k = b.dataset.cls;
     b.className = 'fbtn' + (k === cls ? ' active-all' : '');
   });
+  renderMissing();
+}
+
+function toggleHidden() {
+  showHidden = !showHidden;
+  const btn = document.getElementById('show-hidden-btn');
+  btn.className = 'fbtn' + (showHidden ? ' active-all' : '');
   renderMissing();
 }
 
@@ -763,8 +794,8 @@ function clsCssKey(c) { return c.replace(/\s+/g,'').replace('-',''); }
 function renderMissing() {
   const q = (document.getElementById('missing-search').value || '').toLowerCase().trim();
   let rows = MISSING.filter(([cls, name]) => {
-    if (clsFilter !== 'all' && clsFilter !== 'other' && cls !== clsFilter) return false;
-    if (clsFilter === 'other' && PRIMARY_CLS.has(cls)) return false;
+    if (!showHidden && HIDDEN_VEHICLES.has(name)) return false;
+    if (clsFilter !== 'all' && cls !== clsFilter) return false;
     if (q && !name.toLowerCase().includes(q)) return false;
     return true;
   });
@@ -778,7 +809,8 @@ function renderMissing() {
   rows.forEach(([cls, name]) => {
     const tr = document.createElement('tr');
     const ck = clsCssKey(cls);
-    tr.innerHTML = `<td><span class="cls-badge cls-${ck}">${cls}</span></td><td class="v-name">${name}</td>`;
+    const displayName = showHidden ? name : name.replace(/\s*\(Car Meet\)/gi, '');
+    tr.innerHTML = `<td><span class="cls-badge cls-${ck}">${cls}</span></td><td class="v-name">${displayName}</td>`;
     tbody.appendChild(tr);
   });
   document.getElementById('m-count').textContent = rows.length;
@@ -798,7 +830,7 @@ function updateCharCounts() {
   });
   document.getElementById('count-m').textContent     = totalM.toLocaleString();
   document.getElementById('count-s').textContent     = totalS.toLocaleString();
-  document.getElementById('count-total').textContent = (totalM + totalS).toLocaleString();
+  document.getElementById('count-total').textContent = (totalM + totalS);
 }
 // ═══════════════════════════════════════════════════════════════
 // INIT
